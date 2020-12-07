@@ -1,9 +1,5 @@
 name: 1.0$(rev:.r) # build numbering format
 
-variables:
-  BuildConfiguration: 'Release'
-  FolderToPublish: 'TestAzureDevOps'
-
 resources:
   repositories:
   - repository: ALMStuff
@@ -29,7 +25,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Build'
     inputs:
-      projects: '${{ parameters.ApplicationSubPath }}/**/*.csproj'
+      projects: '**/*.csproj'
       arguments: '--configuration Release'
     
   - template: AzureDevOps/BuildTemplates/NetCore/Steps/Publish.yaml@ALMStuff
